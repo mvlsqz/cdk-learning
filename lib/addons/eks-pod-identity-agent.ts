@@ -2,7 +2,7 @@ import { Construct } from "constructs";
 import { CfnAddon, KubernetesVersion } from "aws-cdk-lib/aws-eks";
 import { AddOn, ClusterInfo } from "../cluster-info";
 
-const COREDNS_VERSION_MAP: Map<KubernetesVersion, string> = new Map([
+const POD_IDENTITYAVENT_VERSION_MAP: Map<KubernetesVersion, string> = new Map([
   [KubernetesVersion.V1_33, "v1.3.8-eksbuild.2"],
   [KubernetesVersion.V1_32, "v1.3.8-eksbuild.2"],
   [KubernetesVersion.V1_31, "v1.3.8-eksbuild.2"],
@@ -17,7 +17,7 @@ export class EksPodIdentityAgentAddOn implements AddOn {
 
   install(scope: Construct, clusterInfo: ClusterInfo) {
     const config = clusterInfo.addonConfigs?.[this.name] || {};
-    const version = config.version || COREDNS_VERSION_MAP.get(clusterInfo.version);
+    const version = config.version || POD_IDENTITYAVENT_VERSION_MAP.get(clusterInfo.version);
 
     if (!version) {
       `EksPodIdentityAgentAddOn: Unsupported Kubernetes version ${clusterInfo.version}` +
