@@ -1,0 +1,10 @@
+{
+	"app": "npx ts-node --prefer-ts-exts eks.ts'",
+	"context": {
+		"infrastructureOwner": "AwesomeAppTeam",
+		"env": "Dev",
+		"adminUsersArns": [
+			"arn:aws:iam::000000000000:user/rootlikeuser"
+		]
+	}
+}
